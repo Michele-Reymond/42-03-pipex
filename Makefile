@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+         #
+#    By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/30 14:37:14 by mreymond          #+#    #+#              #
-#    Updated: 2022/03/30 15:08:00 by mreymond         ###   ########.fr        #
+#    Updated: 2022/04/11 15:12:24 by mreymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		= src/pipex.c
 
-OBJS		= $(SRCS: .c=.o)
+OBJS		= $(SRCS:.c=.o)
 CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra
 NAME		= pipex
@@ -23,11 +23,8 @@ all:		$(NAME)
 $(NAME):	$(OBJS)
 			$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.c
-			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
-
 run:	
-			./$(NAME)
+			./$(NAME) infile "ls -l" "wc -l" outfile
 
 clean:
 			$(RM) $(OBJS)
