@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 14:56:23 by mreymond          #+#    #+#             */
-/*   Updated: 2022/04/13 16:12:43 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/04/15 14:37:06 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,51 @@ void	check_files(char **argv)
 	}
 }
 
-void	child_process(int infile, char *cmd1, char **paths, int fd[])
+void	first_child_process(int infile, char *cmd1, char **paths, int fd[], char **envp)
 {
-	(void)paths;
-	(void)cmd1;
+	int		i;
+	char	*cmd;
+	char	**flags;
+	char	*first_cmd;
+
+	i = 0;
+	flags = ft_split(cmd1, ' ');
+	first_cmd = ft_strjoin("/", flags[0]);
 	close(fd[0]);
 	dup2(infile, STDIN_FILENO);
 	dup2(fd[1], STDOUT_FILENO);
-	// execve();
+	while (paths[i])
+	{
+		cmd = ft_strjoin(paths[i], first_cmd);
+		execve(cmd, flags, envp);
+		free(cmd);
+		i++;
+	}
 }
 
-void	pipex(char **argv, char **paths)
+void	scd_child_process(int outfile, char *cmd2, char **paths, int fd[], char **envp)
+{
+	int		i;
+	char	*cmd;
+	char	**flags;
+	char	*first_cmd;
+
+	i = 0;
+	flags = ft_split(cmd2, ' ');
+	first_cmd = ft_strjoin("/", flags[0]);
+	close(fd[1]);
+	dup2(fd[0], STDIN_FILENO);
+	dup2(outfile, STDOUT_FILENO);
+	while (paths[i])
+	{
+		cmd = ft_strjoin(paths[i], first_cmd);
+		execve(cmd, flags, envp);
+		free(cmd);
+		i++;
+	}
+}
+
+void	pipex(char **argv, char **paths, char **envp)
 {
 	pid_t	pid1;
 	pid_t	pid2;
@@ -67,7 +101,6 @@ void	pipex(char **argv, char **paths)
 	int		infile;
 	int		outfile;
 
-	(void)pid2;
 	infile = open(argv[1], O_RDONLY);
 	outfile = open(argv[4], O_WRONLY);
 	if (pipe(fd) == -1)
@@ -76,13 +109,16 @@ void	pipex(char **argv, char **paths)
 	if (pid1 < 0)
 		return (perror("Fork: "));
 	if (pid1 == 0)
-		child_process(infile, argv[2], paths, fd);
-	else
-	{
-		printf("hello from parent\n");
-		printf("pid = %d\n", pid1);
-	}
-	wait(NULL);
+		first_child_process(infile, argv[2], paths, fd, envp);
+	pid2 = fork();
+	if (pid2 < 0)
+		return (perror("Fork: "));
+	if (pid2 == 0)
+		scd_child_process(outfile, argv[3], paths, fd, envp);
+	close(fd[0]);
+	close(fd[1]);
+	waitpid(pid1, NULL, 0);
+	waitpid(pid2, NULL, 0);
 }
 
 char	**find_paths(char **envp)
@@ -106,7 +142,7 @@ int	main(int argc, char **argv, char **envp)
 	paths = find_paths(envp);
 	check_args(argc, argv);
 	check_files(argv);
-	pipex(argv, paths);
+	pipex(argv, paths, envp);
 	return (0);
 }
 

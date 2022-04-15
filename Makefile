@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+         #
+#    By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/30 14:37:14 by mreymond          #+#    #+#              #
-#    Updated: 2022/04/13 16:15:33 by mreymond         ###   ########.fr        #
+#    Updated: 2022/04/15 14:36:24 by mreymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ $(NAME):	$(OBJS)
 			$(CC) $(CFLAGS) $(OBJS) -L $(LIBFT_PATH) -lft -L $(PRINTF_PATH) -lftprintf -o $(NAME)
 
 run:	
-			./$(NAME) infile "ls -l" "wc -l" outfile
+			./$(NAME) infile "cat infile" "wc -l" outfile
 
 clean:
 			$(RM) $(OBJS)

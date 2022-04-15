@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 15:00:15 by mreymond          #+#    #+#             */
-/*   Updated: 2022/04/13 15:14:51 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/04/15 13:59:52 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@
 # include <string.h>
 # include <errno.h>
 
-void	pipex(char **argv, char **envp);
+
 
 #endif
