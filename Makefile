@@ -6,7 +6,7 @@
 #    By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/30 14:37:14 by mreymond          #+#    #+#              #
-#    Updated: 2022/04/18 15:26:51 by mreymond         ###   ########.fr        #
+#    Updated: 2022/04/18 17:33:03 by mreymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS		= 	src/pipex.c \
 
 OBJS		= $(SRCS:.c=.o)
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra #-g -fsanitize=address
 NAME		= pipex
 RM			= rm -f
 PRINTF_PATH	= src/printf

@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 15:00:15 by mreymond          #+#    #+#             */
-/*   Updated: 2022/04/18 15:25:03 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/04/18 15:32:52 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	pipex(char **argv, char **paths, char **envp);
 void	first_child_process(char **argv, char **paths, int fd[], char **envp);
 void	scd_child_process(char **argv, char **paths, int fd[], char **envp);
 char	**find_paths(char **envp);
-int		check_args(int argc, char **argv);
+void	check_args(int argc);
 void	check_files(char **argv);
 
 #endif

@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+         #
+#    By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/15 15:39:35 by mreymond          #+#    #+#              #
-#    Updated: 2021/10/31 12:26:10 by mreymond         ###   ########.fr        #
+#    Updated: 2022/04/18 17:33:11 by mreymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
 SRCS = ft_bzero.c \
        ft_isalnum.c \
        ft_isalpha.c \

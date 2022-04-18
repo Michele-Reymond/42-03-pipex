@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 15:07:52 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/15 14:06:04 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/04/18 17:30:33 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	**ft_split(char const *s, char c)
 	if (s == NULL)
 		return (NULL);
 	words = countwords(s, c);
-	strtab = (char **)malloc(sizeof(char *) * words + 1);
+	strtab = (char **)malloc(sizeof(char *) * (words + 1));
 	if (!strtab)
 		return (NULL);
 	y = copywords(strtab, s, c, words);
