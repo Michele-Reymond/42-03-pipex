@@ -3,14 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+         #
+#    By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/30 14:37:14 by mreymond          #+#    #+#              #
-#    Updated: 2022/04/15 14:36:24 by mreymond         ###   ########.fr        #
+#    Updated: 2022/04/18 15:26:51 by mreymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= src/pipex.c
+SRCS		= 	src/pipex.c \
+				src/pipex_utils.c \
+				src/pipex_errors.c
 
 OBJS		= $(SRCS:.c=.o)
 CC			= gcc
