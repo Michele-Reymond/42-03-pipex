@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 14:34:17 by mreymond          #+#    #+#             */
-/*   Updated: 2022/04/18 15:32:52 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/04/19 16:27:49 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	check_files(char **argv)
 	{
 		ft_printf("(Error) %s : %s \n", strerror(errno), argv[1]);
 		exit(EXIT_FAILURE);
-	}	
+	}
 	if (access(argv[4], F_OK) != 0)
-		open ("outfile", O_CREAT, 0644);
+		open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (access(argv[4], W_OK) != 0)
 	{
 		ft_printf("(Error) %s : %s \n", strerror(errno), argv[4]);

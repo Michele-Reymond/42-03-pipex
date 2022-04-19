@@ -6,11 +6,31 @@
 /*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 14:56:23 by mreymond          #+#    #+#             */
-/*   Updated: 2022/04/18 17:38:42 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/04/19 19:21:34 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+char	**find_paths(char **envp)
+{
+	int		i;
+	char	*path;
+	char	**all_path;
+
+	i = 0;
+	while (envp[i] && (ft_strnstr(envp[i], "PATH", 5) == NULL))
+		i++;
+	if (envp[i] == NULL)
+	{
+		ft_printf("(Error) PATH not found\n");
+		exit(EXIT_FAILURE);
+	}
+	path = ft_substr(envp[i], 5, ft_strlen(envp[i]) - 5);
+	all_path = ft_split(path, ':');
+	free(path);
+	return (all_path);
+}
 
 int	main(int argc, char **argv, char **envp)
 {

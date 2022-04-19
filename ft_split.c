@@ -6,11 +6,11 @@
 /*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 15:07:52 by mreymond          #+#    #+#             */
-/*   Updated: 2022/04/18 17:30:33 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/04/19 13:55:55 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
 static int	countwords(char const *s, char c)
 {

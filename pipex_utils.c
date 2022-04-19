@@ -6,31 +6,11 @@
 /*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 14:33:04 by mreymond          #+#    #+#             */
-/*   Updated: 2022/04/18 17:27:29 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/04/19 19:21:35 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-char	**find_paths(char **envp)
-{
-	int		i;
-	char	*path;
-	char	**all_path;
-
-	i = 0;
-	while (envp[i] && (ft_strnstr(envp[i], "PATH", 20) == NULL))
-		i++;
-	if (envp[i] == NULL)
-	{
-		ft_printf("(Error) PATH not found\n");
-		exit(EXIT_FAILURE);
-	}
-	path = ft_substr(envp[i], 5, ft_strlen(envp[i]) - 5);
-	all_path = ft_split(path, ':');
-	free(path);
-	return (all_path);
-}
 
 void	exec_cmd(char **paths, char *first_cmd, char **envp, char **flags)
 {
@@ -41,11 +21,26 @@ void	exec_cmd(char **paths, char *first_cmd, char **envp, char **flags)
 	while (paths[i])
 	{
 		cmd = ft_strjoin(paths[i], first_cmd);
-		free(first_cmd);
 		execve(cmd, flags, envp);
 		free(cmd);
 		i++;
 	}
+	free(first_cmd);
+}
+
+char	**split_flags(char *cmds)
+{
+	char	**flags;
+
+	if (ft_strnstr(cmds, "awk", 3) == NULL)
+		flags = ft_split(cmds, ' ');
+	else
+	{
+		flags = ft_split(cmds, '{');
+		flags[0][3] = '\0';
+		flags[1] = ft_strjoin("{", flags[1]);
+	}
+	return (flags);
 }
 
 void	first_child_process(char **argv, char **paths, int fd[], char **envp)
@@ -62,7 +57,7 @@ void	first_child_process(char **argv, char **paths, int fd[], char **envp)
 		perror("Fork: ");
 		exit(EXIT_FAILURE);
 	}
-	flags = ft_split(argv[2], ' ');
+	flags = split_flags(argv[2]);
 	first_cmd = ft_strjoin("/", flags[0]);
 	close(fd[0]);
 	dup2(infile, STDIN_FILENO);
@@ -84,7 +79,7 @@ void	scd_child_process(char **argv, char **paths, int fd[], char **envp)
 		perror("Fork: ");
 		exit(EXIT_FAILURE);
 	}
-	flags = ft_split(argv[3], ' ');
+	flags = split_flags(argv[3]);
 	first_cmd = ft_strjoin("/", flags[0]);
 	close(fd[1]);
 	dup2(fd[0], STDIN_FILENO);
@@ -105,7 +100,9 @@ void	pipex(char **argv, char **paths, char **envp)
 	if (pid1 < 0)
 		return (perror("Fork: "));
 	if (pid1 == 0)
+	{
 		first_child_process(argv, paths, fd, envp);
+	}
 	pid2 = fork();
 	if (pid2 < 0)
 		return (perror("Fork: "));

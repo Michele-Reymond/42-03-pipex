@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/11 17:32:55 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/31 12:02:39 by mreymond         ###   ########.fr       */
+/*   Created: 2021/10/13 15:38:48 by mreymond          #+#    #+#             */
+/*   Updated: 2022/04/19 13:56:51 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
-void	*ft_memset(void *str, int c, unsigned int n)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	unsigned int	i;
-	unsigned char	*a;
 
-	a = str;
 	i = 0;
-	while (i < n && n != 0)
+	while (src[i] != '\0')
+		i++;
+	if (dstsize == 0)
+		return (i);
+	i = 0;
+	while (src[i] != '\0' && i < (dstsize - 1))
 	{
-		a[i] = c;
+		dst[i] = src[i];
 		i++;
 	}
-	return (str);
+	dst[i] = '\0';
+	while (src[i] != '\0')
+		i++;
+	return (i);
 }

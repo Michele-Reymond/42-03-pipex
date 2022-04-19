@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 16:03:48 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/31 12:04:09 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/04/19 13:55:44 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
