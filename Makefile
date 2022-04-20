@@ -6,7 +6,7 @@
 #    By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/30 14:37:14 by mreymond          #+#    #+#              #
-#    Updated: 2022/04/19 19:18:08 by mreymond         ###   ########.fr        #
+#    Updated: 2022/04/20 13:56:30 by mreymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ $(NAME):	$(OBJS)
 			$(CC) $(CFLAGS) $(OBJS) -L $(PRINTF_PATH) -lftprintf -o $(NAME)
 
 run:	
-			./$(NAME) infile "ls -l" "awk {print \$$2}" outfile
+			./$(NAME) infile "ls -l" "awk '{print \$$2}'" outfile
 
 clean:
 			$(RM) $(OBJS)

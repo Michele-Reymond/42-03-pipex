@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 14:33:04 by mreymond          #+#    #+#             */
-/*   Updated: 2022/04/19 19:21:35 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/04/20 13:57:57 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ char	**split_flags(char *cmds)
 		flags = ft_split(cmds, ' ');
 	else
 	{
-		flags = ft_split(cmds, '{');
+		flags = ft_split(cmds, '\'');
 		flags[0][3] = '\0';
-		flags[1] = ft_strjoin("{", flags[1]);
 	}
 	return (flags);
 }
