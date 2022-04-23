@@ -22,7 +22,7 @@ SRCS		= 	pipex.c \
 
 OBJS		= $(SRCS:.c=.o)
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra #-g -fsanitize=address
+CFLAGS		= -g -Wall -Werror -Wextra #-g -fsanitize=address
 NAME		= pipex
 RM			= rm -f
 PRINTF_PATH	= printf
